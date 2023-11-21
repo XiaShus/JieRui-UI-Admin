@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-    <doc-alert title="上传下载" url="https://doc.iocoder.cn/file/"/>
     <!-- 搜索工作栏 -->
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="文件路径" prop="path">
@@ -54,6 +53,9 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" min-width="100px">
         <template v-slot="scope">
+          <el-button size="mini" type="text" icon="el-icon-delete" @click="handlePreview(scope.row)"
+                     v-hasPermi="['infra:file:delete']">预览
+          </el-button>
           <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
                      v-hasPermi="['infra:file:delete']">删除
           </el-button>
@@ -190,6 +192,10 @@ export default {
       // 提示成功，并刷新
       this.$modal.msgSuccess("上传成功");
       this.getList();
+    },
+    /** 预览按钮操作 */
+    handlePreview(row){
+
     },
     /** 删除按钮操作 */
     handleDelete(row) {

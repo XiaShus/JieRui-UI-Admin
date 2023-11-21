@@ -8,7 +8,7 @@ function resolve(dir) {
 
 const CompressionPlugin = require('compression-webpack-plugin')
 
-const name = process.env.VUE_APP_TITLE || '杰瑞的管理系统' // 网页标题
+const name = process.env.VUE_APP_TITLE || '智慧工地平台' // 网页标题
 
 const port = process.env.port || process.env.npm_config_port || 80 // 端口
 
@@ -36,13 +36,14 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       ['/proxy-api']: {
-        target: `http://localhost:48080`,
-        // target: `http://api-dashboard.yudao.iocoder.cn`,
+        target: `http://192.168.31.29:8080`,
+        // target: `http://192.168.0.94:8080`,
+        // target: `http://api-dashboard.yudao.alive.cn`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
-      }
+      },
     },
     disableHostCheck: true
   },
